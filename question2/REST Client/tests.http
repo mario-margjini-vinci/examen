@@ -1,0 +1,99 @@
+@baseUrl = http://localhost:3000
+
+### register pinkLady
+## @name pinkLady
+POST {{baseUrl}}/auths/register
+Content-Type: application/json
+
+{
+    "username":"pinkLady",
+    "password":"azerty"
+}
+
+### register greenMan
+## @name greenMan
+POST {{baseUrl}}/auths/register
+Content-Type: application/json
+
+{
+    "username":"greenMan",
+    "password":"azerty"
+}
+
+### login pinkLady
+## @name pinkLady
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username":"pinkLady",
+    "password":"azerty"
+}
+
+### login greenMan
+## @name greenMan
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username":"greenMan",
+    "password":"azerty"
+}
+### correct score pinkl
+POST {{baseUrl}}/quotes
+Content-Type: application/json
+Authorization: {{pinkLady.response.body.token}}
+
+{
+    "idQuote" : 3,
+    "score" : 8  
+}
+
+### correct score greenm
+POST {{baseUrl}}/quotes
+Content-Type: application/json
+Authorization: {{greenMan.response.body.token}}
+
+{
+    "idQuote" : 15,
+    "score" : 5
+}
+
+### incorrect score pinkl
+POST {{baseUrl}}/quotes
+Content-Type: application/json
+Authorization: {{pinkLady.response.body.token}}
+
+{
+    "idQuote" : 2,
+    "score" : 12  
+}
+
+### incorrect quote pinkl
+POST {{baseUrl}}/quotes
+Content-Type: application/json
+Authorization: {{pinkLady.response.body.token}}
+
+{
+    "idQuote" : 50,
+    "score" : 9
+}
+
+### already rated quote by greenm
+POST {{baseUrl}}/quotes
+Content-Type: application/json
+Authorization: {{greenMan.response.body.token}}
+
+{
+    "idQuote" : 15,
+    "score" : 7  
+}
+
+### annonym rating
+POST {{baseUrl}}/quotes
+Content-Type: application/json
+
+{
+    "idQuote" : 1,
+    "score" : 4  
+}
